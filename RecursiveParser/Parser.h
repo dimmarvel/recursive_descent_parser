@@ -6,9 +6,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void parser_input(char*input);
-static int stmt(lex_analyzer token);
-static int expr(lex_analyzer token);
-static int term(lex_analyzer token);
-static int fact(lex_analyzer token);
+void parser_input(char* input);
+static int stmt(token_lexeme token);
+static int expr(token_lexeme token);
+static int term(token_lexeme token);
+static int fact(token_lexeme token);
 #endif
