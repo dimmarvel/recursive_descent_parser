@@ -1,5 +1,7 @@
 #include "Parser.h"
-void parser_input(char* input) {
+
+void parserq_input(char* input) {
+
 	int result = 0;
 	token_lexeme token;
 
@@ -9,32 +11,34 @@ void parser_input(char* input) {
 	result = stmt(token);
 
 	cout << "Result = " << result;
+	
+	return;
 }
 
-static int stmt(tokken_lexeme token) {
+static int stmt(token_lexeme token) {
 	int result = 0;
 	switch (token.token) {
 	case LP:
 	case NUM:
-		ret = expr(token);
+		result = expr(token);
 	default:
 		break;
 	}
 	return result;
 }
-static int expr(tokken_lexeme token) {
+static int expr(token_lexeme token) {
 	int ret = 0;
 	token_lexeme temp_token = token;
-	switch (token.token) {
+	switch (temp_token.token) {
 	case LP:
 	case NUM:
 		ret = term(temp_token);
 		temp_token = get_next_token();
-		switch (temp_token) {
+		switch (temp_token.token) {
 		case PLUS:
 			temp_token = get_next_token();
-			ret += expr(tmp_token);
-			break
+			ret += expr(temp_token);
+			break;
 		case RP:
 			set_token_index(get_token_index() - 1);
 		default:
@@ -45,7 +49,7 @@ static int expr(tokken_lexeme token) {
 	}
 	return ret;
 }
-static int term(tokken_lexeme token) {
+static int term(token_lexeme token) {
 	int ret = 0;
 	token_lexeme temp_token = token;
 
@@ -73,7 +77,7 @@ static int term(tokken_lexeme token) {
 
 	return ret;
 }
-static int fact(tokken_lexeme token) {
+static int fact(token_lexeme token) {
 	int ret = 0;
 	token_lexeme temp_token = token;
 
@@ -85,6 +89,7 @@ static int fact(tokken_lexeme token) {
 		temp_token = get_next_token();
 		ret = expr(temp_token);
 		temp_token = get_next_token();
+		break;
 	default:
 		break;
 	}

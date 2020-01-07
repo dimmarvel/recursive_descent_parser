@@ -24,30 +24,29 @@ token_lexeme get_next_token(void) {
 	case '7':
 	case '8':
 	case '9':
-	case STAR:
-		token.token = STAR;
-		break;
-	case NUM:
 		token.token = NUM;
 		break;
-	case PLUS:
+	case '*':
+		token.token = STAR;
+		break;
+	case '+':
 		token.token = PLUS;
 		break;
-	case LP:
+	case '(':
 		token.token = LP;
 		break;
-	case RP:
+	case ')':
 		token.token = RP;
 		break;
 	default:
-		if (strlen(input_str) > inut_index) {
+		if (strlen(input_str) > input_index) {
 			token.token = UNKNOWN;
 		}
 		break;
 	}
 	if (token.token != EOI) {
 		token.lexeme = input_str[input_index];
-		token_index++;
+		input_index++;
 	}
 	return token;
 }
