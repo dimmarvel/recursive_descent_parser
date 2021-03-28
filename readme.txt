@@ -1,4 +1,4 @@
-hi this parser can calculate something like num*(num+num)+num 
+This parser can calculate something like num*(num+num)+num 
 example:
 3*(2+2)+3
 Result = 15
